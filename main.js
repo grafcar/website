@@ -36,7 +36,8 @@ document.getElementById("contact-form").addEventListener("submit", function(even
     fetch('https://api.grafcar.net/send-email', { // Replace with your backend URL
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Referer': 'https://grafcar.net'
       },
       body: JSON.stringify(data) // Send data as JSON
     })
