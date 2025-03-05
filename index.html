@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>UNDER CONSTRUCTION</title>
-    </head>
-    <body>
-        <h1>
-            SITE IS UNDER CONSTRUCTION
-        </h1>
-    </body>
+<head>
+    <title>Grafcar</title>
+    <style>
+        label, input, button, textarea {
+            display: block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SITE IS UNDER CONSTRUCTION</h1>
+    <h1>Stress test for this super duper awesome website, please don’t break it and if you do, pls msg me ✌️</h1>
+
+    <form id="contact-form">
+        <label for="name">Name or not, it doesn’t matter cuz it’s not required</label>
+        <input type="text" id="name" name="username" placeholder="yeah it's required">
+        
+        <label for="email">Email (I promise I won’t spam you):</label>
+        <input type="email" id="email" name="email" placeholder="maybe" required>
+        
+        <label for="message">Enter Your Message Here:</label>
+        <textarea id="message" name="message" rows="6" cols="50" maxlength="1000" placeholder="Enter whatever info in here" required></textarea>
+        
+        <label for="rangeNumber">Range</label>
+        <input type="range" id="rangeNumber" name="rangeNumber" step="1" min="0" max="1000" value="20">
+        <p id="rangeOutput"></p>
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" min="0" max="100" step="1">
+        <p id="ageOutput"></p>
+
+        <label for="button">Button</label>
+        <input type="button" id="button" name="button" value="counter">
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="main.js"></script>
+</body>
 </html>
