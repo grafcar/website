@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-    font-family: "Playfair Display", serif;
+    font-family: Helvetica, serif;
     font-optical-sizing: auto;
     font-style: normal;
     height: 300vh;
@@ -53,20 +53,29 @@ table {
 
 :root{
     --bg: white;
-    --text: black;
+    --text-color-color: black;
+    --h1-size: 48px;
+    --h2-size: 36px;
+    --h3-size: 24px;
+    --p-size: 16px;
 }
 
 .dark{
     --bg: #2e2e2e;
-    --text: #e0e0e0;
+    --text-color: #e0e0e0;
 }
 
-body h1{
-    font-family: "Playfair Display", sans-serif;
+h1{
+    font-size: var(--h1-size);
 }
-
-body p{
-    font-family: Arial, Helvetica, sans-serif;
+h2{
+    font-size: var(--h2-size);
+}
+h3{
+    font-size: var(--h3-size);
+}
+p{
+    font-size: var(--p-size);
 }
 
 #nav-bar-container {
@@ -78,13 +87,14 @@ body p{
     position: sticky;
     top: 0;
     left: 0;
+    user-select: none;
 }
 
 .nav-bar{
     display: flex;
     width: 100%;
     background-color: var(--bg);
-    color: var(--text);
+    color: var(--text-color);
     min-height: 40px;
     height: auto;
     align-items: center;
@@ -95,8 +105,6 @@ body p{
 }
 
 .nav-bar-menu{
-    background-color: var(--bg);
-    color: var(--text);
     display: flex;
     align-items: center;
     height: auto;
@@ -104,8 +112,7 @@ body p{
 
 .nav-bar-menu span{
     padding: 0 20px;
-    background-color: var(--bg);
-    color: var(--text);
+    
 }
 
 .nav-bar-icons{
@@ -116,17 +123,17 @@ body p{
 
 a{
     text-decoration: none;
-    color: var(--text);
+    color: var(--text-color);
 }
 
 a:hover{
     text-decoration: none;
-    color: var(--text);
+    color: var(--text-color);
 }
 
 a:visited{
     text-decoration: none;
-    color: var(--text);
+    color: var(--text-color);
 }
 
 .hidden{
@@ -144,12 +151,46 @@ a:visited{
 }
 
 .main-container{
+    display: flex;
+    justify-content: center;
     padding: 20px;
 }
 
-.roadmap h1{
-    font-size: 36px;
+.grid-layout{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1 1 0;
+    gap: 20px;
+    max-width: 1600px;;
 }
-.roadmap p{
-    font-size: 16px;
+.grid-layout-container{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    width: 300px;
+    height: 400px;
+}
+.grid-layout-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    width: 100%;
+    height:50%;
+    /*border-bottom: 1px solid black;*/
+}
+.grid-layout-description{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    gap: 20px;
 }
