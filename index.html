@@ -4,57 +4,46 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Grafcar</title>
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&" />
 </head>
 <body>
     <div id="nav-bar-container">
         <div class="nav-bar">
-            <!-- <div class="nav-bar-hamburger">
-                <a href=#><span class="material-symbols-outlined">menu</span></a>
+            <div class="nav-bar-home">
+                <span class="material-symbols-outlined"><a hre=#>home</a></span>
             </div>
-            <div class="nav-bar-links">
-                <a href=#><span class="material-symbols-outlined">search</span></a>
-                <a href=#><span class="material-symbols-outlined">home</span></a>
-            </div> -->
-            <div class="nav-bar-elements">
-                <a href=#>Home</a>
-                <a href=#>Projects</a>
-                <a href=#>Github</a>
-                <a href=#>About Me</a>
-                <a href=#>Contact Me</a>
+            <div class="nav-bar-menu">
+                <span><a href=#>Projects</a></span>
+
+                <span><a href=#>About Me</a></span>
+                <span><a href=#>Contact Me</a></span>
+            </div>
+            <div class="nav-bar-icons">
+                <span class="material-symbols-outlined"><a href="https://buymeacoffee.com/grafcar" target="_blank">local_cafe</a></span>
+                <div class="light_mode"><span class="material-symbols-outlined">light_mode</span></div>
+                <div class="dark_mode hidden"><span class="material-symbols-outlined">dark_mode</span></div>
             </div>
         </div>
     </div>
 
-    <!-- <h1>Stress test for this super duper awesome website, please don’t break it and if you do, pls msg me ✌️</h1>
+    <div class="main-container">
+        <div class="roadmap">
+            <h1>Website Roadmap</h1>
+            <br>
+            <p>Within 'Projects', use Github API to fetch some of my repos</p>
+            <p>Content for 'About me' and 'Contact me'</p>
+            <p>Pokemon & Weather API</p>
+            <p>Search (queries for a few things within and outside the website?)</p>
+            <p>and more</p>
 
-    <form id="contact-form">
-        <label for="name">Name or not, it doesn’t matter cuz it’s not required</label>
-        <input type="text" id="name" name="username" placeholder="yeah it's required">
-        
-        <label for="email">Email (I promise I won’t spam you):</label>
-        <input type="email" id="email" name="email" placeholder="maybe" required>
-        
-        <label for="message">Enter Your Message Here:</label>
-        <textarea id="message" name="message" rows="6" cols="50" maxlength="1000" placeholder="Enter whatever info in here" required></textarea>
-        
-        <label for="rangeNumber">Range</label>
-        <input type="range" id="rangeNumber" name="rangeNumber" step="1" min="0" max="1000" value="20">
-        <p id="rangeOutput"></p>
+        </div>
+    </div>
 
-        <label for="age">Age</label>
-        <input type="number" id="age" name="age" min="0" max="100" step="1">
-        <p id="ageOutput"></p>
-
-        <label for="button">Button</label>
-        <input type="button" id="button" name="button" value="counter">
-        
-        <button type="submit">Submit</button>
-    </form>
-
-    <script src="main.js"></script> -->
+    <script src="main.js"></script>
 </body>
 </html>

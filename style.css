@@ -51,6 +51,24 @@ table {
 	border-spacing: 0;
 }
 
+:root{
+    --bg: white;
+    --text: black;
+}
+
+.dark{
+    --bg: #2e2e2e;
+    --text: #e0e0e0;
+}
+
+body h1{
+    font-family: "Playfair Display", sans-serif;
+}
+
+body p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #nav-bar-container {
     display: flex;
     padding: 20px;
@@ -65,41 +83,73 @@ table {
 .nav-bar{
     display: flex;
     width: 100%;
+    background-color: var(--bg);
+    color: var(--text);
     min-height: 40px;
     height: auto;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 10px 30px;
     border-radius: 50px;
     box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
 }
 
-.nav-bar-elements{
+.nav-bar-menu{
+    background-color: var(--bg);
+    color: var(--text);
     display: flex;
+    align-items: center;
     height: auto;
 }
 
-.nav-bar-elements a{
-    text-decoration: none;
-    color: black;
-    padding: 0 15px;
+.nav-bar-menu span{
+    padding: 0 20px;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
-.nav-bar-elements a:hover{
-    text-decoration: none;
-    color: black;
+.nav-bar-icons{
+    display: flex;
+    align-items: center;
 }
 
-.nav-bar-elements a:visited{
+
+a{
     text-decoration: none;
-    color: black;
+    color: var(--text);
+}
+
+a:hover{
+    text-decoration: none;
+    color: var(--text);
+}
+
+a:visited{
+    text-decoration: none;
+    color: var(--text);
+}
+
+.hidden{
+    display: none;
 }
 
 .material-symbols-outlined {
-    padding: 0 10px;
+    cursor: pointer;
+    margin: 0 10px;
   font-variation-settings:
   'FILL' 0,
   'wght' 300,
   'GRAD' 0,
   'opsz' 24
+}
+
+.main-container{
+    padding: 20px;
+}
+
+.roadmap h1{
+    font-size: 36px;
+}
+.roadmap p{
+    font-size: 16px;
 }
