@@ -14,15 +14,48 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => console.error("Error loading nav bar:", error));
   });
 
-  function toggleTheme() {
-    var body = document.querySelector('body');
-    body.classList.toggle('dark')
-    const lightTheme = document.querySelector('.light_mode');
-    const darkTheme = document.querySelector('.dark_mode');
-    lightTheme.classList.toggle("hidden");
-    darkTheme.classList.toggle("hidden");
-}
+  document.addEventListener('navbar-loaded', function() {
+    console.log("Navbar has loaded!");
 
-// Attach event listeners
-document.querySelector('.light_mode').addEventListener('click', toggleTheme);
-document.querySelector('.dark_mode').addEventListener('click', toggleTheme);  
+    const lightTheme = document.querySelector('.theme--light');
+    const darkTheme = document.querySelector('.theme--dark');
+    const navbar__hamburger = document.querySelector('.navbar__hamburger');
+    const navbar__hamburger_submenu = document.querySelector('.navbar__hamburger-submenu');
+    const navbar__hamburger_close = document.querySelector('.navbar__hamburger-close');
+    console.log(navbar__hamburger_close);
+
+    if (!lightTheme || !darkTheme) {
+        console.error("Theme elements not found!");
+        return;
+    }
+
+    function toggleTheme() {
+        console.log('toggleTheme');
+        document.body.classList.toggle('dark');
+        lightTheme.classList.toggle("hidden");
+        darkTheme.classList.toggle("hidden");
+    }
+
+    function closeNavBar(){
+      console.log('closeNavBar');
+      navbar__hamburger_submenu.classList.add('hidden');
+    }
+    function openNavBar(event){
+      console.log('openNavBar');
+      if(!event.target.closest('.navbar__hamburger-submenu')){
+        console.log('openNavBar');
+        navbar__hamburger_submenu.classList.remove('hidden');
+      }
+    }
+
+    navbar__hamburger_close.addEventListener('click', function(event){
+      event.stopPropagation();
+      closeNavBar();
+    });
+    
+    navbar__hamburger.addEventListener('click', openNavBar);
+    lightTheme.addEventListener('click', toggleTheme);
+    darkTheme.addEventListener('click', toggleTheme);
+
+});
+

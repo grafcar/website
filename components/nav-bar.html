@@ -1,25 +1,49 @@
-<div id="nav-bar-container">
-    <div class="nav-bar">
-        <div class="nav-bar-home">
-            <span class="material-symbols-outlined"><a href='/index.html'>home</a></span>
+<!-- Structure/layout by @grafcar, BEM naming by Deepseek AI -->
+<nav id="navbar">
+    <div class="navbar__content">
+        <a href="/index.html" class="navbar__home">
+            <span class="material-symbols-outlined">home</span>
+        </a>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="/pages/projects.html" class="navbar__link>">Projects</a>
+            </li>
+            <li class="navbar__item">
+                <a href="/pages/aboutme.html" class="navbar__link>">About me</a>
+            </li>
+            <li class="navbar__item navbar__dropdown">
+                <button class="navbar__link">Contact me</button>
+                <ul class="navbar__submenu">
+                    <li><a href="https://www.linkedin.com/in/bryan-de-los-santos/" target="_blank" class="navbar__sublink">LinkedIn</a></li>
+                    <li><a href="https://github.com/grafcar" target="_blank" class="navbar__sublink">Github</a></li>
+                    <li><a href="/assets/Resume.pdf" download class="navbar__sublink">Resume</a></li>
+                    <li><a href="support@grafcar.net" class="navbar__sublink">Email</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="navbar__actions">
+            <a href="https://buymeacoffee.com/grafcar" target="_blank" class="navbar__icon">
+                <span class="material-symbols-outlined">local_cafe</span>
+            </a>
+            <button class="navbar__theme-toggle">
+                <span class="material-symbols-outlined theme--light">light_mode</span>
+                <span class="material-symbols-outlined theme--dark hidden">dark_mode</span>
+            </button>
         </div>
-        <div class="nav-bar-menu">
-            <div><a href='./pages/projects.html'>Projects</a></div>
 
-            <div><a href='/pages/aboutme.html'>About Me</a></div>
-            <div class="contactinfo">
-                Contact Me
-                <li class="dropdown-menu">
-                    <ul>LinkedIn</ul>
-                    <ul>GitHub</ul>
-                    <ul>Email</ul>
-                </li>
+        <div class="navbar__hamburger">
+            <span class="material-symbols-outlined">menu</span>
+                <div class="navbar__hamburger-submenu hidden">
+                    <a href="javascript:void(0)" class="navbar__hamburger-close"><span class="material-symbols-outlined">close</span>
+                    </a>
+                    <div class="navbar__hamburger-content">
+                        <a href="/pages/projects.html" class="navbar__hamburger-link">Projects</a>
+                        <a href="/pages/aboutme.html" class="navbar__hamburger-link">Github</a>
+                        <a href="https://www.linkedin.com/in/bryan-de-los-santos/" target="_blank" class="navbar__hamburger-link">LinkedIn</a>  
+                        <a href="" target="_blank" class="navbar__hamburger-link">Contact Me</a>  
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="nav-bar-icons">
-            <span class="material-symbols-outlined"><a href="https://buymeacoffee.com/grafcar" target="_blank">local_cafe</a></span>
-            <div class="light_mode"><span class="material-symbols-outlined">light_mode</span></div>
-            <div class="dark_mode hidden"><span class="material-symbols-outlined">dark_mode</span></div>
+            
         </div>
     </div>
-</div>
