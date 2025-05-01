@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Console-like Experience</title>
+  <style>
+    #console {
+      font-family: monospace;
+      background: black;
+      color: green;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
+    }
+    #input {
+      width: 100%;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="console"></div>
+  <input id="input" type="text" placeholder="Type your command..." />
+  
+  <script>
+    const consoleDiv = document.getElementById('console');
+    const input = document.getElementById('input');
+    
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const command = input.value;
+        input.value = '';
+        consoleDiv.innerHTML += `<div>> ${command}</div>`;
+        try {
+          const result = eval(command); // Evaluate JavaScript commands
+          consoleDiv.innerHTML += `<div>${result}</div>`;
+        } catch (error) {
+          consoleDiv.innerHTML += `<div>Error: ${error.message}</div>`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

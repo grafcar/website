@@ -2,45 +2,55 @@
 <nav id="navbar">
     <div class="navbar__content">
         <a href="/index.html" class="navbar__home">
-            <span class="material-symbols-outlined">home</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M264-216h96v-240h240v240h96v-348L480-726 264-564v348Zm-72 72v-456l288-216 288 216v456H528v-240h-96v240H192Zm288-327Z"/></svg>
         </a>
         <ul class="navbar__menu">
             <li class="navbar__item">
                 <a href="/pages/projects.html" class="navbar__link>">Projects</a>
             </li>
-            <li class="navbar__item">
+            <!-- <li class="navbar__item">
                 <a href="/pages/aboutme.html" class="navbar__link>">About me</a>
-            </li>
+            </li> -->
             <li class="navbar__item navbar__dropdown">
                 <button class="navbar__link">Contact me</button>
                 <ul class="navbar__submenu">
-                    <li><a href="https://www.linkedin.com/in/bryan-de-los-santos/" target="_blank" class="navbar__sublink">LinkedIn</a></li>
-                    <li><a href="https://github.com/grafcar" target="_blank" class="navbar__sublink">Github</a></li>
-                    <li><a href="/assets/Resume.pdf" download class="navbar__sublink">Resume</a></li>
-                    <li><a href="support@grafcar.net" class="navbar__sublink">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/bryan-de-los-santos/" target="_blank" class="navbar__sublink"> LinkedIn</a></li>
+                    <li><a href="https://github.com/grafcar" target="_blank" class="navbar__sublink"> Github</a></li>
+                    <li><a href="/assets/Resume.pdf" target="_blank" class="navbar__sublink">󱔗 Resume</a></li>
+                    <!-- <li><a href="support@grafcar.net" class="navbar__sublink">Email</a></li> -->
                 </ul>
             </li>
         </ul>
         <div class="navbar__actions">
             <a href="https://buymeacoffee.com/grafcar" target="_blank" class="navbar__icon">
-                <span class="material-symbols-outlined">local_cafe</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" ><path d="M192-144v-72h576v72H192Zm144-144q-60 0-102-42t-42-102v-384h600q29.7 0 50.85 21.15Q864-773.7 864-744v144q0 29.7-21.15 50.85Q821.7-528 792-528h-72v96q0 60-42 102t-102 42H336Zm0-72h240q29.7 0 50.85-21.15Q648-402.3 648-432v-312H264v312q0 29.7 21.15 50.85Q306.3-360 336-360Zm384-240h72v-144h-72v144ZM336-360h-72 384-312Z"/></svg>
             </a>
             <button class="navbar__theme-toggle">
-                <span class="material-symbols-outlined theme--light">light_mode</span>
-                <span class="material-symbols-outlined theme--dark hidden">dark_mode</span>
+                <svg class="theme--light" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" ><path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm-.23 72Q400-288 344-344.23q-56-56.22-56-136Q288-560 344.23-616q56.22-56 136-56Q560-672 616-615.77q56 56.22 56 136Q672-400 615.77-344q-56.22 56-136 56ZM216-444H48v-72h168v72Zm696 0H744v-72h168v72ZM444-744v-168h72v168h-72Zm0 696v-168h72v168h-72ZM269-642 166-742l51-55 102 104-50 51Zm474 475L642-268l49-51 103 101-51 51ZM640-691l102-101 51 49-100 103-53-51ZM163-217l105-99 49 47-98 104-56-52Zm317-263Z"/></svg>
+                <svg class="theme--dark" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" ><path d="M479.96-144Q340-144 242-242t-98-238q0-140 97.93-238t237.83-98q13.06 0 25.65 1 12.59 1 25.59 3-39 29-62 72t-23 92q0 85 58.5 143.5T648-446q49 0 92-23t72-62q2 13 3 25.59t1 25.65q0 139.9-98.04 237.83t-238 97.93Zm.04-72q82 0 148.78-47.07Q695.55-310.15 727-386q-20 5-39.67 8.5Q667.67-374 648-374q-113.86 0-193.93-80.07Q374-534.14 374-648q0-19.67 3.5-39.33Q381-707 386-727q-75.85 31.45-122.93 98.22Q216-562 216-480q0 110 77 187t187 77Zm-14-250Z"/></svg>
             </button>
         </div>
 
         <div class="navbar__hamburger">
             <span class="material-symbols-outlined">menu</span>
                 <div class="navbar__hamburger-submenu hidden">
-                    <a href="javascript:void(0)" class="navbar__hamburger-close"><span class="material-symbols-outlined">close</span>
-                    </a>
+                    <button class="navbar__hamburger-close"><span class="material-symbols-outlined">close</span>
+                    </button>
                     <div class="navbar__hamburger-content">
                         <a href="/pages/projects.html" class="navbar__hamburger-link">Projects</a>
-                        <a href="/pages/aboutme.html" class="navbar__hamburger-link">Github</a>
-                        <a href="https://www.linkedin.com/in/bryan-de-los-santos/" target="_blank" class="navbar__hamburger-link">LinkedIn</a>  
-                        <a href="" target="_blank" class="navbar__hamburger-link">Contact Me</a>  
+                        <a href="https://github.com/grafcar" target="_blank" class="navbar__hamburger-link"> Github</a>
+                        <a href="https://www.linkedin.com/in/bryan-de-los-santos/" target="_blank" class="navbar__hamburger-link"> LinkedIn</a>
+                        <a href="/assets/Resume.pdf" target="_blank" class="navbar__hamburger-link">󱔗 Resume</a>  
+                        <!-- <a href="" target="_blank" class="navbar__hamburger-link">Contact Me</a>   -->
+                    </div>
+                    <div class="navbar__hamburger-actions">
+                        <a href="https://buymeacoffee.com/grafcar" target="_blank" class="navbar__icon">
+                            <span class="material-symbols-outlined">local_cafe</span>
+                        </a>
+                        <button class="navbar__theme-toggle">
+                            <span class="material-symbols-outlined theme--light">light_mode</span>
+                            <span class="material-symbols-outlined theme--dark hidden">dark_mode</span>
+                        </button>
                     </div>
                 </div>
             </div>
