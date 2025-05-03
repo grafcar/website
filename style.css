@@ -489,86 +489,134 @@ a:visited {
     justify-content: center;
     text-align: center;
     padding: 0 2rem;
-    background: linear-gradient(to bottom, var(--background-dark), var(--background-light));
+    position: relative;
+    overflow: hidden;
+    background: var(--background-dark);
+    opacity: 1 !important;
+    /* transform: none !important;
+    animation: none !important; */
 }
 
 .hero-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
-    transform: translateY(100%);
-    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle at center, 
+        rgba(0, 199, 190, 0.4) 0%, 
+        rgba(0, 113, 227, 0.3) 30%, 
+        rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: blobMove1 20s ease-in-out infinite;
+    filter: blur(60px);
+    z-index: 0;
 }
 
-.hero-section:hover::before {
-    transform: translateY(0);
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at center, 
+        rgba(255, 45, 85, 0.3) 0%, 
+        rgba(255, 149, 0, 0.25) 30%, 
+        rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: blobMove2 18s ease-in-out infinite reverse;
+    filter: blur(40px);
+    z-index: 0;
+}
+
+.hero-section::before {
+    animation: blobMove1 20s ease-in-out infinite;
+}
+
+.hero-section::after {
+    animation: blobMove2 18s ease-in-out infinite reverse;
 }
 
 .hero-content {
-    animation: scaleIn 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    position: relative;
+    z-index: 1;
+    animation: scaleIn 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-/* Section Styles */
-.section {
+@keyframes blobMove1 {
+    0% {
+        transform: translate(-50%, -50%) scale(1) translate(0, 0);
+        opacity: 0.8;
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.3) translate(100px, -50px);
+        opacity: 0.7;
+    }
+    40% {
+        transform: translate(-50%, -50%) scale(0.9) translate(-80px, 80px);
+        opacity: 0.9;
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(1.2) translate(50px, 100px);
+        opacity: 0.6;
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(0.8) translate(-100px, -30px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) translate(0, 0);
+        opacity: 0.8;
+    }
+}
+
+@keyframes blobMove2 {
+    0% {
+        transform: translate(-50%, -50%) scale(1) translate(0, 0);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translate(-50%, -50%) scale(1.4) translate(-120px, 40px);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(0.7) translate(90px, -60px);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translate(-50%, -50%) scale(1.1) translate(-40px, -100px);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) translate(0, 0);
+        opacity: 0.8;
+    }
+}
+
+/* Section Styles - explicitly setting all sections to have no animations */
+.section, 
+#about.section, 
+#education.section, 
+#projects.section, 
+#skills.section, 
+#resume.section {
     padding: 4rem 2rem;
     min-height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--background-dark);
-}
-
-.section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
-    transform: translateY(-101%);
-    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-    pointer-events: none;
-}
-
-.section:hover::after {
-    transform: translateY(0);
-}
-
-.section-gradient-in {
-    background: linear-gradient(to bottom, var(--section-gradient-1), var(--section-gradient-2));
-}
-
-.section-gradient-out {
-    background: linear-gradient(to bottom, var(--section-gradient-2), var(--section-gradient-3));
-}
-
-.section-solid-dark {
-    background: var(--background-dark);
-}
-
-.section-solid-light {
-    background: var(--background-light);
-}
-
-.section-pattern {
-    background: 
-        linear-gradient(135deg, var(--background-dark) 25%, transparent 25%) -50px 0,
-        linear-gradient(225deg, var(--background-dark) 25%, transparent 25%) -50px 0,
-        linear-gradient(315deg, var(--background-dark) 25%, transparent 25%),
-        linear-gradient(45deg, var(--background-dark) 25%, transparent 25%);
-    background-size: 100px 100px;
-    background-color: var(--background-light);
-}
-
-.section-border {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    will-change: auto;
 }
 
 .section:nth-child(odd) {
@@ -579,20 +627,52 @@ a:visited {
     background: linear-gradient(to bottom, var(--section-gradient-1), var(--section-gradient-2));
 }
 
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    width: 0;
-    height: 3px;
-    background: var(--accent-color);
-    transform: translateX(-50%);
-    transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+/* Section animations */
+.section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+    will-change: auto;
 }
 
-.section:hover .section-title::after {
-    width: 60px;
+.section.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Section content animations - controls the inner content */
+.section-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.section.visible .section-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Preserve About section specific animations */
+.about-image, .about-text p {
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+    transition: none !important;
+}
+
+.section.visible .about-image, 
+.section.visible .about-text p {
+    transition-property: transform, opacity !important;
+    transition-duration: 0.6s !important;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.section.visible .about-image.animate-in, 
+.section.visible .about-text p.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 /* Contact Form */
@@ -678,9 +758,6 @@ a:visited {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s ease forwards;
 }
 
 .about-image {
@@ -689,9 +766,6 @@ a:visited {
     overflow: hidden;
     aspect-ratio: 3/4;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateX(-20px);
-    opacity: 0;
-    animation: slideInLeft 1s ease forwards 0.3s;
 }
 
 .about-image img {
@@ -709,9 +783,6 @@ a:visited {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    transform: translateX(20px);
-    opacity: 0;
-    animation: slideInRight 1s ease forwards 0.3s;
 }
 
 .about-text p {
@@ -733,39 +804,6 @@ a:visited {
     margin-top: 1rem;
 }
 
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        transform: translateX(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 @media (max-width: 768px) {
     .about-content {
         grid-template-columns: 1fr;
@@ -783,14 +821,16 @@ a:visited {
     }
 }
 
+#about.visible .about-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 /* Education Section */
 .education-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s ease forwards;
 }
 
 .education-header {
@@ -799,6 +839,11 @@ a:visited {
     gap: 4rem;
     align-items: center;
     margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s cubic-bezier(0.42, 0, 0.58, 1), 
+                transform 0.6s cubic-bezier(0.42, 0, 0.58, 1);
+    will-change: opacity, transform;
 }
 
 .education-info {
@@ -832,29 +877,28 @@ a:visited {
     overflow: hidden;
     aspect-ratio: 16/9;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateX(20px);
     opacity: 0;
-    animation: slideInRight 1s ease forwards 0.3s;
+    transform: translateX(30px);
+    transition: opacity 0.6s cubic-bezier(0.42, 0, 0.58, 1), 
+                transform 0.6s cubic-bezier(0.42, 0, 0.58, 1);
+    will-change: opacity, transform;
 }
 
 .education-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 .education-image:hover img {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .education-description {
     max-width: 800px;
     margin: 0 auto 4rem;
     text-align: center;
-    transform: translateY(20px);
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards 0.6s;
 }
 
 .education-description p {
@@ -873,28 +917,25 @@ a:visited {
     background: var(--background-light);
     border-radius: 18px;
     overflow: hidden;
-    transition: var(--transition);
-    transform: translateY(20px);
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
+    transition: opacity 0.7s cubic-bezier(0.42, 0, 0.58, 1), 
+                transform 0.7s cubic-bezier(0.42, 0, 0.58, 1),
+                box-shadow 0.3s cubic-bezier(0.42, 0, 0.58, 1);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: scale(0.98) translateY(20px);
+    will-change: opacity, transform, box-shadow;
 }
-
-.course-card:nth-child(1) { animation-delay: 0.9s; }
-.course-card:nth-child(2) { animation-delay: 1.2s; }
-.course-card:nth-child(3) { animation-delay: 1.5s; }
-.course-card:nth-child(4) { animation-delay: 1.8s; }
 
 .course-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 .course-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .course-info {
@@ -912,6 +953,11 @@ a:visited {
     font-size: var(--p-size);
     line-height: 1.6;
     color: var(--text-secondary);
+}
+
+.course-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -933,14 +979,16 @@ a:visited {
     }
 }
 
+#education.visible .education-content {
+    opacity: 1;
+    transform: none;
+}
+
 /* Skills Section */
 .skills-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s ease forwards;
 }
 
 .skills-grid {
@@ -955,9 +1003,6 @@ a:visited {
     border-radius: 18px;
     padding: 2rem;
     transition: var(--transition);
-    transform: translateY(20px);
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1043,15 +1088,17 @@ a:visited {
     }
 }
 
+#skills.visible .skills-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Resume & Contact Section */
 .resume-contact-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s ease forwards;
     min-height: auto;
 }
 
@@ -1181,23 +1228,8 @@ footer.hidden {
     position: relative;
 }
 
-.footer-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--primary-color);
-    transition: var(--transition);
-}
-
 .footer-links a:hover {
     color: var(--text-primary);
-}
-
-.footer-links a:hover::after {
-    width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -1243,4 +1275,297 @@ footer.hidden {
     .projects-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Apple-like Animations */
+@keyframes fadeUpIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes blurIn {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* About Section Animations */
+.about-image {
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.6s cubic-bezier(0.42, 0, 0.58, 1);
+    position: relative;
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 113, 227, 0.15), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.about-image.animate-in::after {
+    opacity: 1;
+}
+
+.about-image img {
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.about-image.animate-in img {
+    transform: scale(1.01);
+}
+
+.about-text p {
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-text .intro {
+    transition-delay: 0.1s;
+}
+
+.about-text p:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.about-text p:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.about-text p:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+/* Animation Classes */
+.about-image.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-text p.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section animations */
+.section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+    will-change: auto;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Specific about section animation refinements */
+#about.visible {
+    position: relative;
+}
+
+#about.visible::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 70% 30%,
+        rgba(37, 38, 43, 0.7) 0%,
+        rgba(0, 0, 0, 0) 70%
+    );
+    opacity: 0;
+    animation: fadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Ensure animation performance is optimized */
+.about-content {
+    will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section,
+    .about-image,
+    .about-text p {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    #about.visible::before {
+        animation: none !important;
+        opacity: 0.5;
+    }
+}
+
+/* Education Section Animation */
+#education {
+    background-color: var(--background-dark);
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+/* Remove the education reveal animation */
+@keyframes educationReveal {
+    0%, 50%, 100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.education-content {
+    transition: none;
+}
+
+#education.visible .education-content {
+    opacity: 1;
+    transform: none;
+}
+
+/* Projects Section Animation */
+#projects {
+    background-color: var(--background-dark);
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+/* Remove the projects reveal animation */
+@keyframes projectsReveal {
+    0%, 50%, 100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.projects-grid {
+    transition: none;
+}
+
+#projects.visible .projects-grid {
+    opacity: 1;
+    transform: none;
+}
+
+/* Skills Section Animation */
+#skills {
+    background-color: var(--background-dark);
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+/* Remove the skills reveal animation */
+@keyframes skillsReveal {
+    0%, 50%, 100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.skills-content {
+    transition: none;
+}
+
+#skills.visible .skills-content {
+    opacity: 1;
+    transform: none;
+}
+
+/* Resume & Contact Section Animation */
+#resume {
+    background-color: var(--background-dark);
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+/* Remove the resume reveal animation */
+@keyframes resumeReveal {
+    0%, 50%, 100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.resume-contact-content {
+    transition: none;
+}
+
+#resume.visible .resume-contact-content {
+    opacity: 1;
+    transform: none;
+}
+
+/* About Content needs special handling to avoid animation conflicts */
+.about-content.section-content {
+    /* Override section-content animations for about section */
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
 }
