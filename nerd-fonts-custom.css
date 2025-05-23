@@ -1,0 +1,46 @@
+/* Custom Nerd Fonts implementation */
+@font-face {
+  font-family: 'JetBrainsMono Nerd Font';
+  src: url('/fonts/JetBrainsMonoNerdFont-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Scoped class to avoid conflicts */
+.nf-custom {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Character codes for common icons */
+.nf-js:before { content: "\f898"; }
+.nf-python:before { content: "\e235"; }
+.nf-java:before { content: "\e738"; }
+.nf-swift:before { content: "\e755"; }
+.nf-html:before { content: "\f72d"; }
+.nf-css:before { content: "\e749"; }
+.nf-sql:before { content: "\f1c0"; }
+.nf-c:before { content: "\e61e"; }
+.nf-typescript:before { content: "\e628"; }
+.nf-mongodb:before { content: "\f6be"; }
+.nf-react:before { content: "\e7ba"; }
+.nf-node:before { content: "\f898"; }
+.nf-express:before { content: "\e7a5"; }
+.nf-express-alt:before { content: "\e7a6"; }
+.nf-redux:before { content: "\f7d4"; }
+.nf-graphql:before { content: "\e7bd"; }
+.nf-tensorflow:before { content: "\e631"; }
+.nf-nextjs:before { content: "\e7bb"; }
+.nf-nextjs-alt:before { content: "\e7bc"; }
+.nf-git:before { content: "\f7a1"; }
+.nf-mysql:before { content: "\f872"; }
+.nf-docker:before { content: "\f308"; }
+.nf-aws:before { content: "\f700"; }
+.nf-linux:before { content: "\f31a"; } 

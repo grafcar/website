@@ -7,6 +7,9 @@ fullScreen();
 window.addEventListener('resize', fullScreen);
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Add debug message at the very beginning
+    console.log('DOM Content Loaded - Starting script');
+    
     // Get DOM elements
     const navbar = document.querySelector('.navbar');
     const navBrand = document.querySelector('.nav-brand');
@@ -280,4 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true }); // Optimize scroll performance
     }
+
+    // NOTE: Glide.js is now initialized directly in the HTML
+    // to ensure it works properly and avoid conflicts
+
 });

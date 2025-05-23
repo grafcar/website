@@ -4,7 +4,7 @@
 */
 
 @font-face {
-    font-family: 'JetBrain Mono';
+    font-family: 'JetBrainMono Nerd Font';
     src: url('/fonts/JetBrainsMonoNerdFont-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -28,6 +28,9 @@
     --bg: #000000;
     --bg-secondary: #1d1d1f;
     --navbar--transition-duration: 0.3s;
+    
+    /* Add the Skills section background color */
+    --skills-bg: #171D26;
     
     /* Typography */
     --font-system: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -103,42 +106,53 @@ p {
 }
 
 .nav-brand {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 500;
     letter-spacing: -0.01em;
+    color: var(--text-primary);
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    font-size: 0.9375rem;
-    font-weight: 500;
+    font-size: 0.875rem;
+    font-weight: 400;
     letter-spacing: -0.01em;
     color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
-    position: relative;
+    opacity: 0.8;
 }
 
 .nav-links a:hover {
     color: var(--text-primary);
+    opacity: 1;
 }
 
 .nav-links a:visited {
     color: var(--text-secondary);
 }
 
+/* Remove the underline animation */
 .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
+    display: none;
+    content: none;
     width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: var(--transition);
+    height: 0;
+    background: none;
+    transition: none;
 }
 
 .nav-links a:hover::after {
-    width: 100%;
+    width: 0;
 }
 
 /* General link styles */
@@ -155,23 +169,6 @@ a:hover {
 a:visited {
     color: var(--primary-color);
     opacity: 0.8;
-}
-
-/* Button styles */
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    background: var(--primary-color);
-    color: #ffffff !important;
-    padding: 1rem 2rem;
-    border-radius: 980px;
-    font-size: 1.125rem;
-    font-weight: 500;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -430,10 +427,10 @@ a:visited {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 1.5rem 2rem;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    padding: 0.75rem 2rem;
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -453,32 +450,36 @@ a:visited {
     display: flex;
     gap: 2rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
-    position: relative;
+    opacity: 0.8;
 }
 
 .nav-links a:hover {
-    color: var(--accent-color);
+    color: var(--text-primary);
+    opacity: 1;
 }
 
 .nav-links a::after {
-    content: '';
-    position: absolute;
+    display: none;
+    content: none;
     width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: var(--accent-color);
-    transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+    height: 0;
+    background: none;
+    transition: none;
 }
 
 .nav-links a:hover::after {
-    width: 100%;
+    width: 0;
 }
 
 /* Hero Section */
@@ -609,7 +610,7 @@ a:visited {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--background-dark);
+    background-color: var(--background-dark); /* Default background color */
     position: relative;
     z-index: 1;
     opacity: 1 !important;
@@ -619,12 +620,53 @@ a:visited {
     will-change: auto;
 }
 
-.section:nth-child(odd) {
+/* Default section backgrounds */
+.section:not(#projects):not(#skills):not(#resume):nth-child(odd) {
     background: linear-gradient(to bottom, var(--section-gradient-2), var(--section-gradient-3));
 }
 
-.section:nth-child(even) {
+.section:not(#projects):not(#skills):not(#resume):nth-child(even) {
     background: linear-gradient(to bottom, var(--section-gradient-1), var(--section-gradient-2));
+}
+
+/* Projects section - improved transition to Skills section */
+#projects.section {
+    background: linear-gradient(to bottom, 
+        var(--section-gradient-2) 0%,
+        var(--section-gradient-2) 60%,   /* Start transition earlier */
+        var(--section-gradient-2) 70%,   /* Hold main color */
+        var(--skills-bg) 90%,            /* More gradual transition */
+        var(--skills-bg) 100%            /* End with Skills color */
+    ) !important;
+    margin-bottom: -1px;                 /* Prevent any gap between sections */
+}
+
+/* Skills section - solid background with slight gradient at edges */
+#skills.section {
+    background: linear-gradient(to bottom,
+        var(--skills-bg) 0%,             /* Start with Skills color */
+        var(--skills-bg) 100%            /* End with Skills color */
+    ) !important;
+    position: relative;
+    overflow: hidden;
+    margin-top: -1px;                    /* Prevent any gap with Projects section */
+    margin-bottom: -1px;                 /* Prevent any gap with Resume section */
+}
+
+/* Remove the radial gradient from Skills section */
+#skills::before {
+    content: none;
+}
+
+/* Resume section - improved transition from Skills section */
+#resume.section {
+    background: linear-gradient(to bottom,
+        var(--skills-bg) 0%,             /* Start with Skills color */
+        var(--skills-bg) 10%,            /* Hold Skills color */
+        var(--section-gradient-3) 40%,   /* More gradual transition */
+        var(--section-gradient-2) 100%   /* End color */
+    ) !important;
+    margin-top: -1px;                    /* Prevent any gap between sections */
 }
 
 /* Section animations */
@@ -710,8 +752,14 @@ a:visited {
     background: none;
     border: none;
     color: var(--text-primary);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     cursor: pointer;
+    opacity: 0.8;
+    padding: 0.5rem;
+}
+
+.mobile-menu-btn:hover {
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -726,7 +774,9 @@ a:visited {
         right: -100%;
         height: 100vh;
         width: 100%;
-        background: rgba(255, 255, 255, 0.98);
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -736,7 +786,6 @@ a:visited {
     .nav-links.active {
         right: 0;
         display: flex;
-        background: rgba(26, 26, 26, 0.98);
     }
 
     .hero-content h1 {
@@ -984,113 +1033,200 @@ a:visited {
     transform: none;
 }
 
-/* Skills Section */
-.skills-content {
-    max-width: 1200px;
+/* Skills Section Styles */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1800px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
 .skill-category {
     background: var(--background-light);
-    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
     padding: 2rem;
-    transition: var(--transition);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 100%;
 }
 
-.skill-category:nth-child(1) { animation-delay: 0.3s; }
-.skill-category:nth-child(2) { animation-delay: 0.6s; }
-.skill-category:nth-child(3) { animation-delay: 0.9s; }
-
-.skill-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-}
-
-.skill-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.skill-category h3 {
+    color: var(--text-primary);
     margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.skill-header i {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    background: rgba(0, 113, 227, 0.1);
-    padding: 0.8rem;
-    border-radius: 12px;
-    transition: var(--transition);
-}
-
-.skill-category:hover .skill-header i {
-    transform: scale(1.1);
-    background: var(--primary-color);
-    color: var(--text-primary);
-}
-
-.skill-header h3 {
-    font-size: var(--h3-size);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
     font-weight: 600;
-    color: var(--text-primary);
+    text-align: center;
 }
 
-.skill-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
+.skill-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+    justify-items: center;
+    width: 100%;
 }
 
 .skill-item {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-secondary);
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    transition: var(--transition);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+    width: 100%;
 }
 
-.skill-item:hover {
-    background: var(--primary-color);
+.skill-item i {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--text-primary);
-    transform: translateY(-2px);
+    transition: all 0.3s ease;
+    background: var(--background);
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    border-radius: 1rem;
+    width: clamp(3.5rem, 5vw, 4.5rem);
+    height: clamp(3.5rem, 5vw, 4.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-item i.nf,
+.skill-item i.nf-custom {
+    font-family: "JetBrainsMono Nerd Font", monospace !important;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(3.5rem, 5vw, 4.5rem);
+    height: clamp(3.5rem, 5vw, 4.5rem);
+    background: var(--background);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.skill-item span {
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.skill-item:hover i {
+    transform: scale(1.1);
+    color: var(--accent-color);
 }
 
 @media (max-width: 768px) {
     .skills-grid {
-        grid-template-columns: 1fr;
+        padding: 0 1rem;
     }
-
-    .skill-category {
-        padding: 1.5rem;
-    }
-
-    .skill-items {
-        gap: 0.6rem;
-    }
-
-    .skill-item {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
+    
+    .skill-icons {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     }
 }
 
-#skills.visible .skills-content {
+@media (max-width: 480px) {
+    .skill-icons {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+}
+
+/* Splide.js Customization */
+.splide {
+    margin: 3rem auto;
+    max-width: 1000px;
+    padding: 0;
+    position: relative;
+}
+
+.splide__track {
+    overflow: hidden !important;
+    position: relative;
+}
+
+.splide__list {
+    display: flex;
+    align-items: center;
+}
+
+.splide__slide {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: none;
+    transform: none;
+    z-index: -1;
+}
+
+.splide__slide.is-active {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+}
+
+/* Splide Navigation */
+.splide__arrow {
+    background: var(--background-light);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    opacity: 0.8;
+    transition: none !important;
+    transform: none !important;
+}
+
+.splide__arrow:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    opacity: 1;
+    transform: none !important;
+    transition: none !important;
+}
+
+.splide__arrow svg {
+    fill: var(--text-primary);
+    width: 24px;
+    height: 24px;
+}
+
+/* Splide Pagination */
+.splide__pagination {
+    bottom: -3rem;
+}
+
+.splide__pagination__page {
+    background: var(--text-secondary);
+    width: 8px;
+    height: 8px;
+    margin: 0 6px;
+    border-radius: 4px;
+    opacity: 0.3;
+    transition: none !important;
+    transform: none !important;
+}
+
+.splide__pagination__page.is-active {
+    background: var(--primary-color);
+    opacity: 1;
+    transform: none !important;
+    transition: none !important;
+}
+
+.splide__pagination__page:hover {
+    background: var(--primary-color);
+    opacity: 0.8;
+    transform: none !important;
+    transition: none !important;
 }
 
 /* Resume & Contact Section */
@@ -1103,7 +1239,7 @@ a:visited {
 }
 
 .resume-download {
-    margin-bottom: 2rem;
+    margin: 2rem;
 }
 
 .btn-primary {
@@ -1183,12 +1319,47 @@ a:visited {
     color: var(--text-primary);
 }
 
+@media (max-width: 768px) {
+    .btn-primary{
+        padding: 1rem;
+    }
+    .contact-links {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .contact-link {
+        flex-direction: row;
+        padding: 0.5rem 1rem;
+        background: none;
+        border: none;
+        gap: 0.5rem;
+        width: 30%;
+    }
+
+    .contact-link:hover {
+        transform: none;
+        background: none;
+    }
+
+    .contact-link i {
+        font-size: 1.25rem;
+    }
+
+    .contact-link span {
+        font-size: 0.875rem;
+    }
+}
+
 /* Footer */
 footer {
     background: var(--background-light);
     padding: 3rem 2rem;
     margin-top: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
     transition: var(--transition);
     z-index: 1000;
 }
@@ -1235,11 +1406,6 @@ footer.hidden {
 @media (max-width: 768px) {
     .resume-contact-content {
         padding: 0 1rem;
-    }
-
-    .contact-links {
-        flex-direction: column;
-        gap: 1rem;
     }
 
     .footer-content {
@@ -1568,4 +1734,13 @@ footer.hidden {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+}
+
+/* Skills Section additional overrides */
+#skills-splide {
+    visibility: hidden;
+}
+
+#skills-splide.is-initialized {
+    visibility: visible;
 }

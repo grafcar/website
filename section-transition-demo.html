@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seamless Section Transitions Demo</title>
+    <style>
+        :root {
+            /* Define colors */
+            --skills-bg: #171D26;        /* Solid background for Skills section */
+            --projects-bg: #121212;      /* Main background for Projects section */
+            --resume-bg: #1a1a1a;        /* Main background for Resume section */
+            --background-dark: #000000;  /* Black background */
+            --text-color: #f5f5f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-dark);
+        }
+
+        /* Section styling */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Projects section - fade to Skills section color at bottom */
+        .section-1 {
+            background: linear-gradient(to bottom, 
+                var(--projects-bg) 0%, 
+                var(--projects-bg) 70%,
+                var(--skills-bg) 100%  /* End with Skills section color */
+            );
+        }
+
+        /* Skills section - solid background color */
+        .section-2 {
+            background-color: var(--skills-bg);  /* Solid background color */
+        }
+
+        /* Resume section - fade from Skills section color at top */
+        .section-3 {
+            background: linear-gradient(to bottom,
+                var(--skills-bg) 0%,    /* Start with Skills section color */
+                var(--resume-bg) 30%,   /* Transition to Resume color */
+                var(--resume-bg) 100%
+            );
+        }
+    </style>
+</head>
+<body>
+    <section class="section section-1">
+        <h2>Projects Section</h2>
+        <p>This section has a gradient that transitions to the Skills section color at the bottom.</p>
+        <p>Scroll down to see the seamless transition effect.</p>
+    </section>
+    
+    <section class="section section-2">
+        <h2>Skills Section</h2>
+        <p>This section has a solid background color (#171D26).</p>
+        <p>Notice how the neighboring sections blend into this color for seamless transitions.</p>
+    </section>
+    
+    <section class="section section-3">
+        <h2>Resume Section</h2>
+        <p>This section starts with the Skills section color and transitions to its own color.</p>
+        <p>The gradient creates a smooth, natural flow between sections.</p>
+    </section>
+</body>
+</html> 
