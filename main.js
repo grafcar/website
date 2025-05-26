@@ -3,6 +3,11 @@ function fullScreen(){
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
+// Add mobile check function
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
 fullScreen();
 window.addEventListener('resize', fullScreen);
 
@@ -17,114 +22,127 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinksContainer = document.querySelector('.nav-links');
 
-    // Intersection Observer for animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 // Trigger when 15% of the element is visible
-    };
+    // Only set up animations if not on mobile
+    if (!isMobile()) {
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 // Trigger when 15% of the element is visible
+        };
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add visible class to the section
-                entry.target.classList.add('visible');
-                
-                // Only animate section content, not the section itself
-                const sectionContent = entry.target.querySelectorAll('.section-content');
-                sectionContent.forEach(content => {
-                    setTimeout(() => {
-                        content.style.opacity = '1';
-                        content.style.transform = 'translateY(0)';
-                    }, 100); // Slight delay for visual polish
-                });
-            }
-        });
-    }, observerOptions);
-
-    // Observe all sections for animations
-    document.querySelectorAll('.section').forEach(section => {
-        sectionObserver.observe(section);
-    });
-
-    // Special observer for about section elements with more refined animations
-    const aboutObserverOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const aboutElementObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Add staggered animation delay
-                setTimeout(() => {
-                    entry.target.classList.add('animate-in');
-                }, index * 150); // 150ms staggered delay
-            }
-        });
-    }, aboutObserverOptions);
-
-    // Observe about section elements
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-        // Observe individual elements for staggered animations
-        const aboutImage = aboutSection.querySelector('.about-image');
-        const aboutTextElements = aboutSection.querySelectorAll('.about-text p');
-        
-        if (aboutImage) aboutElementObserver.observe(aboutImage);
-        aboutTextElements.forEach((element) => {
-            aboutElementObserver.observe(element);
-        });
-    }
-
-    // Special observer for education section elements
-    const educationObserverOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-
-    const educationElementObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                // Handle education header and image
-                if (entry.target.classList.contains('education-header')) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }
-                // Handle education image
-                else if (entry.target.classList.contains('education-image')) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }
-                // Handle course cards container
-                else if (entry.target.classList.contains('education-courses')) {
-                    const cards = entry.target.querySelectorAll('.course-card');
-                    cards.forEach((card, index) => {
-                        // Calculate a more natural delay based on the card's position
-                        const delay = index * 200; // 200ms between each card
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add visible class to the section
+                    entry.target.classList.add('visible');
+                    
+                    // Only animate section content, not the section itself
+                    const sectionContent = entry.target.querySelectorAll('.section-content');
+                    sectionContent.forEach(content => {
                         setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1) translateY(0)';
-                        }, delay);
+                            content.style.opacity = '1';
+                            content.style.transform = 'translateY(0)';
+                        }, 100); // Slight delay for visual polish
                     });
                 }
-            }
-        });
-    }, educationObserverOptions);
+            });
+        }, observerOptions);
 
-    // Observe education section elements
-    const educationSection = document.getElementById('education');
-    if (educationSection) {
-        // Observe individual elements
-        const educationHeader = educationSection.querySelector('.education-header');
-        const educationImage = educationSection.querySelector('.education-image');
-        const educationCourses = educationSection.querySelector('.education-courses');
-        
-        if (educationHeader) educationElementObserver.observe(educationHeader);
-        if (educationImage) educationElementObserver.observe(educationImage);
-        if (educationCourses) educationElementObserver.observe(educationCourses);
+        // Observe all sections for animations
+        document.querySelectorAll('.section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Special observer for about section elements with more refined animations
+        const aboutObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const aboutElementObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add staggered animation delay
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, index * 150); // 150ms staggered delay
+                }
+            });
+        }, aboutObserverOptions);
+
+        // Observe about section elements
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            // Observe individual elements for staggered animations
+            const aboutImage = aboutSection.querySelector('.about-image');
+            const aboutTextElements = aboutSection.querySelectorAll('.about-text p');
+            
+            if (aboutImage) aboutElementObserver.observe(aboutImage);
+            aboutTextElements.forEach((element) => {
+                aboutElementObserver.observe(element);
+            });
+        }
+
+        // Special observer for education section elements
+        const educationObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const educationElementObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Handle education header and image
+                    if (entry.target.classList.contains('education-header')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                    // Handle education image
+                    else if (entry.target.classList.contains('education-image')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                    // Handle course cards container
+                    else if (entry.target.classList.contains('education-courses')) {
+                        const cards = entry.target.querySelectorAll('.course-card');
+                        cards.forEach((card, index) => {
+                            // Calculate a more natural delay based on the card's position
+                            const delay = index * 200; // 200ms between each card
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1) translateY(0)';
+                            }, delay);
+                        });
+                    }
+                }
+            });
+        }, educationObserverOptions);
+
+        // Observe education section elements
+        const educationSection = document.getElementById('education');
+        if (educationSection) {
+            // Observe individual elements
+            const educationHeader = educationSection.querySelector('.education-header');
+            const educationImage = educationSection.querySelector('.education-image');
+            const educationCourses = educationSection.querySelector('.education-courses');
+            
+            if (educationHeader) educationElementObserver.observe(educationHeader);
+            if (educationImage) educationElementObserver.observe(educationImage);
+            if (educationCourses) educationElementObserver.observe(educationCourses);
+        }
+    } else {
+        // On mobile, immediately show all content without animations
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('visible');
+            const sectionContent = section.querySelectorAll('.section-content');
+            sectionContent.forEach(content => {
+                content.style.opacity = '1';
+                content.style.transform = 'none';
+            });
+        });
     }
 
     // Change brand name on scroll
@@ -156,40 +174,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 const navbarHeight = navbar.offsetHeight;
                 const targetPosition = targetSection.offsetTop - navbarHeight;
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu if open
+                // Close mobile menu and restore scroll before scrolling to section
                 navLinksContainer.classList.remove('active');
-            }
-        });
-    });
-
-    // Smooth scroll for footer links
-    const footerLinks = document.querySelectorAll('.footer-link');
-    footerLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const navbarHeight = navbar.offsetHeight;
-                const targetPosition = targetSection.offsetTop - navbarHeight;
+                document.body.style.overflow = '';
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                // Add a small delay to ensure the menu is closed before scrolling
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             }
         });
     });
 
     // Mobile menu functionality
-    mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent this click from immediately closing the menu
         navLinksContainer.classList.toggle('active');
+        // Toggle body scroll lock
+        document.body.style.overflow = navLinksContainer.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close menu when clicking outside or on a nav link
+    document.addEventListener('click', (e) => {
+        if (navLinksContainer.classList.contains('active')) {
+            const isClickInsideMenu = navLinksContainer.contains(e.target);
+            const isClickOnMenuButton = mobileMenuBtn.contains(e.target);
+
+            if (!isClickInsideMenu && !isClickOnMenuButton) {
+                navLinksContainer.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scroll
+            }
+        }
     });
 
     const slides = document.querySelector('.slider-content');
@@ -237,8 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle window resize
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 768 && navLinksContainer.classList.contains('active')) {
             navLinksContainer.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
         }
     });
 

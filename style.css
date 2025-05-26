@@ -167,7 +167,7 @@ a:hover {
 }
 
 a:visited {
-    color: var(--primary-color);
+    color: var(--text-secondary);
     opacity: 0.8;
 }
 
@@ -443,7 +443,7 @@ a:visited {
 }
 
 .nav-brand:hover {
-    color: var(--accent-color);
+    color: var(--text-secondaryr);
 }
 
 .nav-links {
@@ -605,7 +605,7 @@ a:visited {
 #projects.section, 
 #skills.section, 
 #resume.section {
-    padding: 4rem 2rem;
+    padding: 2rem;
     min-height: auto;
     display: flex;
     flex-direction: column;
@@ -621,16 +621,16 @@ a:visited {
 }
 
 /* Default section backgrounds */
-.section:not(#projects):not(#skills):not(#resume):nth-child(odd) {
+.section:not(#education):not(#projects):not(#skills):nth-child(odd) {
     background: linear-gradient(to bottom, var(--section-gradient-2), var(--section-gradient-3));
 }
 
-.section:not(#projects):not(#skills):not(#resume):nth-child(even) {
+.section:not(#education):not(#projects):not(#skills):nth-child(even) {
     background: linear-gradient(to bottom, var(--section-gradient-1), var(--section-gradient-2));
 }
 
-/* Projects section - improved transition to Skills section */
-#projects.section {
+/* Education section - improved transition to Projects section */
+#education.section {
     background: linear-gradient(to bottom, 
         var(--section-gradient-2) 0%,
         var(--section-gradient-2) 60%,   /* Start transition earlier */
@@ -641,32 +641,37 @@ a:visited {
     margin-bottom: -1px;                 /* Prevent any gap between sections */
 }
 
-/* Skills section - solid background with slight gradient at edges */
-#skills.section {
+/* Projects section - solid background with slight gradient at edges */
+#projects.section {
     background: linear-gradient(to bottom,
         var(--skills-bg) 0%,             /* Start with Skills color */
         var(--skills-bg) 100%            /* End with Skills color */
     ) !important;
     position: relative;
     overflow: hidden;
-    margin-top: -1px;                    /* Prevent any gap with Projects section */
-    margin-bottom: -1px;                 /* Prevent any gap with Resume section */
+    margin-top: -1px;                    /* Prevent any gap with Education section */
+    margin-bottom: -1px;                 /* Prevent any gap with Skills section */
 }
 
-/* Remove the radial gradient from Skills section */
-#skills::before {
+/* Remove the radial gradient from Projects section */
+#projects::before {
     content: none;
 }
 
-/* Resume section - improved transition from Skills section */
-#resume.section {
+/* Skills section - improved transition from Projects section */
+#skills.section {
     background: linear-gradient(to bottom,
         var(--skills-bg) 0%,             /* Start with Skills color */
         var(--skills-bg) 10%,            /* Hold Skills color */
-        var(--section-gradient-3) 40%,   /* More gradual transition */
-        var(--section-gradient-2) 100%   /* End color */
+        #0a0a0a 40%,                     /* Darker gradient */
+        #121212 100%                     /* End with slightly lighter dark */
     ) !important;
     margin-top: -1px;                    /* Prevent any gap between sections */
+}
+
+/* About section */
+#about.section {
+    background: linear-gradient(to bottom, var(--section-gradient-1), var(--section-gradient-2));
 }
 
 /* Section animations */
@@ -768,24 +773,26 @@ a:visited {
     }
 
     .nav-links {
-        display: none;
+        display: flex;
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0;
+        width: 50%;
         height: 100vh;
-        width: 100%;
         background: rgba(0, 0, 0, 0.95);
         backdrop-filter: saturate(180%) blur(20px);
         -webkit-backdrop-filter: saturate(180%) blur(20px);
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: var(--transition);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+        box-shadow: -3px 0 10px rgba(0,0,0,0.25);
     }
 
     .nav-links.active {
-        right: 0;
-        display: flex;
+        transform: translateX(0);
     }
 
     .hero-content h1 {
@@ -960,6 +967,37 @@ a:visited {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    grid-auto-rows: 1fr; /* Ensure all cards in a row have the same height */
+}
+
+/* Add responsive breakpoints for education courses */
+@media (min-width: 1800px) {
+    .education-courses {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1799px) and (min-width: 1200px) {
+    .education-courses {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    .education-courses {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .education-courses {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
 }
 
 .course-card {
@@ -974,6 +1012,9 @@ a:visited {
     opacity: 0;
     transform: scale(0.98) translateY(20px);
     will-change: opacity, transform, box-shadow;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .course-card img {
@@ -989,6 +1030,9 @@ a:visited {
 
 .course-info {
     padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .course-info h4 {
@@ -996,12 +1040,18 @@ a:visited {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .course-info p {
     font-size: var(--p-size);
     line-height: 1.6;
     color: var(--text-secondary);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .course-card:hover {
@@ -1046,14 +1096,16 @@ a:visited {
 
 .skill-category {
     background: var(--background-light);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1rem;
     padding: 2rem;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 .skill-category h3 {
     color: var(--text-primary);
@@ -1743,4 +1795,62 @@ footer.hidden {
 
 #skills-splide.is-initialized {
     visibility: visible;
+}
+
+/* Ensure no loading animation for the content wrapper within the projects section */
+#projects .section-content {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto; /* Reset will-change as animations are removed */
+}
+
+/* Mobile Animation Disabler */
+@media (max-width: 768px) {
+    /* Disable all animations and transitions */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Ensure content is immediately visible */
+    .section,
+    .section-content,
+    .about-image,
+    .about-text p,
+    .education-header,
+    .education-image,
+    .education-courses,
+    .course-card,
+    .skill-item,
+    .project-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* Remove hover effects */
+    .project-card:hover,
+    .course-card:hover,
+    .skill-item:hover,
+    .about-image:hover img,
+    .education-image:hover img,
+    .btn:hover,
+    .nav-links a:hover,
+    .footer-links a:hover {
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Ensure smooth scrolling still works */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Remove parallax effects */
+    .about-image,
+    .about-text {
+        transform: none !important;
+    }
 }
