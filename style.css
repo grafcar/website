@@ -973,7 +973,7 @@ a:visited {
     padding: 0 2rem;
     grid-auto-rows: 1fr; /* Ensure all cards in a row have the same height */
 }
-
+ 
 /* Add responsive breakpoints for education courses */
 @media (min-width: 1800px) {
     .education-courses {
