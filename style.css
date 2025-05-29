@@ -1841,7 +1841,7 @@ footer.hidden {
 #projects .section-content {
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: stretch; 
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
